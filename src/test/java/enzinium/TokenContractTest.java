@@ -1,9 +1,12 @@
 package enzinium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.lang.IllegalArgumentException;
 
 public class TokenContractTest {
 
@@ -78,5 +81,10 @@ public class TokenContractTest {
         ricknillos.payable(morty.getPK(), 8d);
         assertEquals(5d, ricknillos.balanceOf(morty.getPK()), 0d);
         assertEquals(28d, ricknillos.owner().getBalance(), 0d);
+    }
+
+    @Test
+    public void requireThrowsTest() {
+        assertThrows(IllegalArgumentException.class, () -> ricknillos.require(false));
     }
 }

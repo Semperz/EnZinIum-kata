@@ -107,24 +107,24 @@ public class TokenContract {
             require(balanceOf(ownerPK) >= units);
             this.getBalances().compute(ownerPK, (pk, tokens) -> tokens - units);
             this.getBalances().put(recipient, balanceOf(recipient) + units);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // fails silently
         }      
-    };
+    }
 
     public void transfer(PublicKey sender, PublicKey recipient, Double units) {
         try {
             require(balanceOf(sender) >= units);
             this.getBalances().put(sender, balanceOf(sender) - units);
             this.getBalances().put(recipient, balanceOf(recipient) + units);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // fails silently
         }   
     }
 
-    private void require(Boolean holds) throws Exception {
+    void require(Boolean holds) throws IllegalArgumentException {
         if (!holds) {
-            throw new Exception();
+            throw new IllegalArgumentException();
         }
     }
 
