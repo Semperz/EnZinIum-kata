@@ -22,7 +22,7 @@ public class Address {
         return this.SK;
     }
 
-    boolean isSKpresent() {
+    public boolean isSKpresent() {
         return this.getSK() != null;
     }
 
@@ -34,7 +34,7 @@ public class Address {
         return this.PK;
     }
 
-    double getBalance() {
+    public double getBalance() {
         return this.balance;
     }
 
@@ -44,7 +44,7 @@ public class Address {
         this.setPK(pair.getPublic());
     }
 
-    void transferEZI(double enziniums) {
+    public void transferEZI(double enziniums) {
         this.balance += enziniums;
     }
 

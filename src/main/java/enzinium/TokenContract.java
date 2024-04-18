@@ -122,7 +122,7 @@ public class TokenContract {
         }   
     }
 
-    void require(Boolean holds) throws IllegalArgumentException {
+    public void require(Boolean holds) throws IllegalArgumentException {
         if (!holds) {
             throw new IllegalArgumentException();
         }
@@ -150,13 +150,13 @@ public class TokenContract {
         return this.totalTokensSold.intValue();
     }
 
-    void payable(PublicKey recipient, Double enziniums) {
+    public void payable(PublicKey recipient, Double enziniums) {
         try {
             require(enziniums >= this.getTokenPrice());
             Double units = Math.floor(enziniums / tokenPrice);
             transfer(recipient, units);
             this.owner.transferEZI(enziniums);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // fail silently
         }
     }
