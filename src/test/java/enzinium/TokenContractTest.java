@@ -1,9 +1,9 @@
 package enzinium;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class TokenContractTest {
 
@@ -11,8 +11,9 @@ public class TokenContractTest {
     private Address morty = null;
     private TokenContract ricknillos = null;
 
-    @Before
+    @BeforeEach
     public void setup_address_y_contract() {
+
 
         rick = new Address();
         rick.generateKeyPair();

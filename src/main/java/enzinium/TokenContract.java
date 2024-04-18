@@ -123,7 +123,7 @@ public class TokenContract {
     }
 
     private void require(Boolean holds) throws Exception {
-        if (! holds) {
+        if (!holds) {
             throw new Exception();
         }
     }
