@@ -1,10 +1,10 @@
-package enziniumTest;
+package enzinium;
 
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import enzinium.Address;
+
 import org.junit.jupiter.api.Test;
 
 public class AddressTest {

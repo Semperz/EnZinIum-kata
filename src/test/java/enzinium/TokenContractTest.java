@@ -1,11 +1,10 @@
-package enziniumTest;
+package enzinium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-import enzinium.Address;
-import enzinium.TokenContract;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
