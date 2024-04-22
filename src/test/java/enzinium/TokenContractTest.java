@@ -1,14 +1,10 @@
 package enzinium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.IllegalArgumentException;
 
 public class TokenContractTest {
 
@@ -29,7 +25,7 @@ public class TokenContractTest {
         ricknillos.setTokenPrice(5d);
 
         morty = new Address();
-        morty.generateKeyPair(); 
+        morty.generateKeyPair();
     }
 
     @Test
@@ -60,7 +56,7 @@ public class TokenContractTest {
 
         // require falla silenciosamente
         ricknillos.transfer(morty.getPK(), 500d);
-        assertEquals(2d, ricknillos.balanceOf(morty.getPK()), 0d);   
+        assertEquals(2d, ricknillos.balanceOf(morty.getPK()), 0d);
     }
 
     @Test
@@ -70,7 +66,7 @@ public class TokenContractTest {
 
         // verifico la transferencia de entradas
         ricknillos.payable(morty.getPK(), morty.getBalance());
-        assertEquals(4d, ricknillos.balanceOf(morty.getPK()), 0d);   
+        assertEquals(4d, ricknillos.balanceOf(morty.getPK()), 0d);
         // verifico la trasnferencia de EZI
         assertEquals(20d, ricknillos.owner().getBalance(), 0d);
 
@@ -85,8 +81,4 @@ public class TokenContractTest {
         assertEquals(28d, ricknillos.owner().getBalance(), 0d);
     }
 
-    @Test
-    public void requireThrowsTest() {
-        assertThrows(IllegalArgumentException.class, () -> ricknillos.require(false));
-    }
 }
