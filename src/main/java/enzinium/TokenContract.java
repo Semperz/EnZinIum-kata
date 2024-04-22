@@ -104,7 +104,7 @@ public class TokenContract {
 
     public void transfer(PublicKey recipient, Double units) {
         try {
-            require(balanceOf(ownerPK) >= units);
+            checkHasEnoughBalance(balanceOf(ownerPK),  units);
             this.getBalances().compute(ownerPK, (pk, tokens) -> tokens - units);
             this.getBalances().put(recipient, balanceOf(recipient) + units);
         } catch (IllegalArgumentException e) {
@@ -114,7 +114,7 @@ public class TokenContract {
 
     public void transfer(PublicKey sender, PublicKey recipient, Double units) {
         try {
-            require(balanceOf(sender) >= units);
+            checkHasEnoughBalance(balanceOf(sender), units);
             this.getBalances().put(sender, balanceOf(sender) - units);
             this.getBalances().put(recipient, balanceOf(recipient) + units);
         } catch (IllegalArgumentException e) {
@@ -122,9 +122,9 @@ public class TokenContract {
         }   
     }
 
-    public void require(Boolean holds) throws IllegalArgumentException {
-        if (!holds) {
-            throw new IllegalArgumentException();
+    public void checkHasEnoughBalance(Double balance, Double units) throws IllegalArgumentException {
+        if (balance < units) {
+            throw new IllegalArgumentException(String.format("balance >= units check failed: balance: %f, units: %f", balance, units));
         }
     }
 
@@ -152,7 +152,7 @@ public class TokenContract {
 
     public void payable(PublicKey recipient, Double enziniums) {
         try {
-            require(enziniums >= this.getTokenPrice());
+            checkHasEnoughBalance(enziniums, this.getTokenPrice());
             Double units = Math.floor(enziniums / tokenPrice);
             transfer(recipient, units);
             this.owner.transferEZI(enziniums);
